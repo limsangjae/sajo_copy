@@ -1,0 +1,261 @@
+var frmPath = location.pathname;
+var frmSearch = location.search;
+var frmPathSearch = location.pathname + location.search;
+
+$(document).ready(function(){
+	/* 상단 검색 */
+	$("#header_warp").each(function(){
+		var $this = $(this);
+		var innerHeight = $this.innerHeight();
+		$this.css({"min-height":innerHeight});
+		$this.find(".search-a").click(function(e){
+			e.preventDefault();
+			$this.find(".sp-layout-search").addClass("on");
+		});
+
+		$(window).scroll(function(){
+			var windowScrollTop = $(this).scrollTop();
+			if(innerHeight <= windowScrollTop){
+				$("#header").addClass("fixed");
+			}else{
+				$("#header").removeClass("fixed");
+			}
+		});
+	});
+
+	/* 외부 클릭 시 상단 검색창 닫기 */
+	$("body").click(function(e){
+		if(!$("#header_warp").find(".sp-layout-search").has(e.target).length){
+			$("#header_warp").find(".sp-layout-search").removeClass("on");
+		}
+	});
+
+	/* 하단 패밀리 사이트 */
+	$(".family-site").each(function(){
+		var $this = $(this);
+		var $open = false;
+		$this.children("a").click(function(e){
+			e.preventDefault();
+			if($open == false){
+				$(this).addClass("on");
+				$this.find("ul").slideDown();
+				$open = true;
+			}else{
+				$(this).removeClass("on");
+				$this.find("ul").slideUp();
+				$open = false;
+			}
+			$this.find("ul > li a").click(function(){
+				var $moveUrl = $(this).text();
+				$this.children("a").text($moveUrl);
+				if($open == true){
+					$this.children("a").removeClass("on");
+					$this.find("ul").slideUp();
+					$open = false;
+				}
+			});
+		});
+	});
+
+	/* 로그인 */
+	$("#login").each(function(){
+		var $this = $(this);
+		$this.find(".member-tab ul li a").click(function(e){
+			var $onForm = $(this).attr("href");
+			e.preventDefault();
+			$(".member-tab ul li").removeClass("on");
+			$(this).parent("li").addClass("on");
+			$(".member_cont > form, #userLoginWrap").hide();
+			$(".member_cont").find($onForm).show();
+		});
+	});
+
+	/* 회원가입 약관 팝업 */
+	$("#dbkJoin .terms").each(function(){
+		var $this = $(this);
+		$this.find(".form_element a").click(function(e){
+			e.preventDefault();
+			$(".body-dbk-join").append('<div class="dim"></div><div class="terms-contents"><h3></h3><div class="contents"></div><button type="button">확인</button><a href="#none;"></a></div>');
+			var $title = $(this).parents(".form_element").find("label").html();
+			var $contents = $(this).parents(".join_agreement_box").find(".content").html();
+			$(".body-dbk-join").css({"overflow":"hidden"});
+			$(".dim").show();
+			$(".terms-contents h3").html($title);
+			$(".terms-contents .contents").html($contents);
+			$(".terms-contents").show();
+			$(".body-dbk-join").find(".dim").click(function(){
+				$(".body-dbk-join").css({"overflow":"visible"});
+				$(".dim").remove();
+				$(".terms-contents").remove();
+			});
+			$(".terms-contents").find("button, a").click(function(e){
+				e.preventDefault();
+				$(".body-dbk-join").css({"overflow":"visible"});
+				$(".dim").remove();
+				$(".terms-contents").remove();
+			});
+		});
+	});
+
+	/* 회원정보수정 약관 팝업 */
+	$(".body-my-page").find(".join_agreement_cont").each(function(){
+		var $this = $(this);
+		$this.find(".form_element a").click(function(e){
+			e.preventDefault();
+			$(".body-my-page").append('<div class="dim"></div><div class="terms-contents"><h3></h3><div class="contents"></div><button type="button">확인</button><a href="#none;"></a></div>');
+			var $title = $(this).parents(".form_element").find("label").html();
+			var $contents = $(this).parents(".join_agreement_box").find(".content").html();
+			$(".body-my-page").css({"overflow":"hidden"});
+			$(".dim").show();
+			$(".terms-contents h3").html($title);
+			$(".terms-contents .contents").html($contents);
+			$(".terms-contents").show();
+			$(".body-my-page").find(".dim").click(function(){
+				$(".body-my-page").css({"overflow":"visible"});
+				$(".dim").remove();
+				$(".terms-contents").remove();
+			});
+			$(".terms-contents").find("button, a").click(function(e){
+				e.preventDefault();
+				$(".body-my-page").css({"overflow":"visible"});
+				$(".dim").remove();
+				$(".terms-contents").remove();
+			});
+		})
+	});
+
+	/* 베스트 순위 */
+	$("#populate").each(function(){
+		$(this).find("li").each(function(){
+			var lank = $(this).index()+1;
+			$(this).find(".item_cont").prepend("<span class='lank'><strong>" + lank + "</strong>위</span>")
+		});
+	});
+
+	/* 검색 페이지 검색 결과 없을 때 */
+	$("#search").each(function(){
+		$(this).find(".goods_no_data strong").text("검색 결과가 없습니다.");
+	/* 검색 정렬 스크립트는 goods_search.html 하단에 정의 */
+	});
+
+	/* 장바구니 탭메뉴 */
+	$("#cart").each(function(){
+		var $this = $(this);
+		$this.find(".cart-tab-menu ul li a").click(function(e){
+			$(".cart-tab-menu ul li a").parent("li").removeClass("on");
+			$(this).parent("li").addClass("on");
+		});
+	});
+
+	/* 구매하기 박스 */
+	$("#order").each(function(){
+		var orderBox = $(this).find(".order_cont");
+		var innerHeight = orderBox.innerHeight();
+		var sumBoxHeight = orderBox.find(".price-sum-box").outerHeight(true);
+		var offsetTop = $(".order_cont").offset().top-86;
+		var offsetBottom = innerHeight + offsetTop;
+		var fixedEndPoint = offsetBottom - sumBoxHeight;
+		$(window).scroll(function(){
+			var scrollTop = $(this).scrollTop();
+			if(offsetTop < scrollTop){
+				$("#order .price-sum-box").addClass("on");
+			}else{
+				$("#order .price-sum-box").removeClass("on");
+			}
+			if(fixedEndPoint < scrollTop){
+				orderBox.find(".price-sum-box").removeClass("on");
+				orderBox.find(".price-sum-box").addClass("bottom");
+			}else if(offsetTop <= scrollTop && scrollTop < fixedEndPoint){
+				orderBox.find(".price-sum-box").addClass("on");
+				orderBox.find(".price-sum-box").removeClass("bottom");
+			}else{
+				orderBox.find(".price-sum-box").removeClass("on");
+				orderBox.find(".price-sum-box").removeClass("bottom");
+			}
+		});
+	});
+
+	/* 상품상세 배송타입 */
+	$(".item_tit_detail_cont").each(function(){
+		var $this = $(this);
+		$this.find(".deliver-type ul li a").click(function(e){
+			e.preventDefault();
+			$(".deliver-type ul li a").parent("li").removeClass("on");
+			$(this).parent("li").addClass("on");
+		});
+	});
+
+	/* 어바웃참치 */
+	$(".about-tuna").each(function(){
+		var $this = $(this);
+		var $grid = $(".masonry > ul").imagesLoaded( function() {
+			$grid.masonry({
+				itemSelector: ".item",
+				columnWidth: 300,
+				gutter: 39,
+				horizontalOrder: true,
+			});
+			// 배너고정
+			var storyBox = $this.find(".board_list_event");
+			var innerHeight = storyBox.innerHeight();
+			var bannerHeight = storyBox.find(".left").outerHeight(true);
+			var offsetTop = storyBox.offset().top-116;
+			var offsetBottom = innerHeight + offsetTop;
+			var fixedEndPoint = offsetBottom - bannerHeight-40;
+			$(window).scroll(function(){
+				var scrollTop = $(this).scrollTop();
+				if(fixedEndPoint < scrollTop){
+					storyBox.find(".left").removeClass("start");
+					storyBox.find(".left").addClass("end");
+				}else if(offsetTop <= scrollTop && scrollTop < fixedEndPoint){
+					storyBox.find(".left").addClass("start");
+					storyBox.find(".left").removeClass("end");
+				}else{
+					storyBox.find(".left").removeClass("start");
+					storyBox.find(".left").removeClass("end");
+				}
+			});
+			// 영상 팝업
+			$this.find(".left a, .right .top a, .right .item a").click(function(e){
+				var $divideKey = $(this).attr("href").slice(0,3);
+				var $videoKey = "../";
+				if($divideKey != $videoKey){
+					e.preventDefault();
+					var $videoUrl = $(this).attr("href");
+					$("body").css("overflow","hidden");
+					$("body").append("<div class='video-dim'></div><div class='video-wrap'><span class='close-video'>닫기</span></div>");
+					$(".video-wrap").prepend("<iframe width='100%' height='100%' src='https://www.youtube.com/embed/" + $videoUrl + "?autoplay=1' frameborder='0' allowfullscreen></iframe>");
+					$(".video-dim, .close-video").click(function(){
+						$("body").css("overflow","");
+						$(".video-dim").remove();
+						$(".video-wrap").remove();
+					});
+				}
+			});
+		});		
+	});
+
+	/* 리뷰 순위 */
+	$(".review-list").each(function(){
+		$(this).find("li").each(function(){
+			var lank = $(this).index()+1;
+			$(this).prepend("<span class='lank'>" + lank + "</span>");
+		});
+	});
+
+	/* 고객 생생 리뷰 */
+	$(".board-goodsreview .best-review").each(function(){
+		var swiper = new Swiper(".best-review .swiper-container", {
+			slidesPerView: 3,
+			spaceBetween: 40,
+			slidesPerGroup : 3,
+			loopFillGroupWithBlank : true,
+			loop: true,
+			speed: 800,
+			navigation: {
+				nextEl: ".board-goodsreview .best-review .swiper-button-next",
+				prevEl: ".board-goodsreview .best-review .swiper-button-prev",
+			},
+		});
+	});
+});
