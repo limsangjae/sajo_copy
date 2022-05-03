@@ -1,0 +1,160 @@
+$(document).ready(function(){
+	/* 메인 비주얼 
+	$(".main-visual").each(function(){
+		var swiper = new Swiper(".main-visual .swiper-container", {
+			slidesPerView: 1,
+			spaceBetween: 60,
+			pagination: {
+				el: ".main-visual .swiper-pagination",
+				clickable: true,
+			},
+			navigation: {
+				nextEl: ".main-visual .swiper-button-next",
+				prevEl: ".main-visual .swiper-button-prev",
+			},
+			loop: true,
+			loopAdditionalSlides : 1,
+			autoplay: {
+				delay: 5000,
+				disableOnInteraction: false,
+			},
+			speed: 1000,
+		});
+		$(".main-slide-btn .main-slide-pause").click(function(){
+			swiper.autoplay.stop();
+			$(".main-slide-btn .main-slide-pause").css("display","none");
+			$(".main-slide-btn .main-slide-resume").css("display","inline-block");
+		});
+		$(".main-slide-btn .main-slide-resume").click(function(){
+			swiper.autoplay.start();
+			$(".main-slide-btn .main-slide-resume").css("display","none");
+			$(".main-slide-btn .main-slide-pause").css("display","inline-block");
+		});
+	});*/
+
+	/* 메인 비주얼 */
+	$(".main-visual").each(function(){
+		$(".main-slide-pause").click(function(){
+			$(".main-visual .slider-wrap").slick("slickPause");
+			$(".main-slide-btn .main-slide-pause").css("display","none");
+			$(".main-slide-btn .main-slide-resume").css("display","inline-block");
+		});
+		$(".main-slide-resume").click(function(){
+			$(".main-visual .slider-wrap").slick("slickPlay");
+			$(".main-slide-btn .main-slide-resume").css("display","none");
+			$(".main-slide-btn .main-slide-pause").css("display","inline-block");
+		});
+	});
+
+	/* 퀵메뉴 */
+	$(".main-quick-menu").each(function(){
+		var swiper = new Swiper(".main-quick-menu .swiper-container", {
+			slidesPerView: 5,
+			spaceBetween: 78,
+			loop: true,
+			loopAdditionalSlides : 1,
+			navigation: {
+				nextEl: ".main-quick-menu .swiper-button-next",
+				prevEl: ".main-quick-menu .swiper-button-prev",
+			},
+		});
+	});
+
+	/* 핫딜 */
+	$(".hot-deal").each(function(){
+		var textSwiper = new Swiper(".hot-deal .hotdeal-textbox .swiper-container", {
+			slidesPerView: 2,
+			spaceBetween: 40,
+			loop: true,
+			touchRatio: 0,
+		});
+		var imgSwiper = new Swiper(".hot-deal .hotdeal-imgbox.swiper-container", {
+			slidesPerView: 2,
+			spaceBetween: 40,
+			loop: true,
+			controller: {
+				control: textSwiper
+			},
+			pagination: {
+				el: ".hot-deal .swiper-progress-bar",
+				type: "progressbar",
+			},
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 1000,
+		});
+	});
+
+	/* 기획전 */
+	$(".exhibition").each(function(){
+		var swiper = new Swiper(".exhibition .swiper-container", {
+			slidesPerView: 1,
+			spaceBetween: 0,	
+			navigation: {
+				nextEl: ".exhibition .swiper-button-next",
+				prevEl: ".exhibition .swiper-button-prev",
+			},
+			loop: true,
+			speed: 800,
+		});
+	});
+
+	/* 사조이야기 */
+	$(".story").each(function(){
+		var $this = $(this);
+			//마소니
+		var $grid = $(".story-list > ul").imagesLoaded( function() {
+			$grid.masonry({
+				itemSelector: ".item",
+				columnWidth: 300,
+				gutter: 39,
+				horizontalOrder: true,
+			});
+			// 배너고정
+			var storyBox = $this.find(".story-box")
+			var innerHeight = storyBox.innerHeight();
+			var bannerHeight = storyBox.find(".story-thumb").outerHeight(true);
+			var offsetTop = storyBox.offset().top-116;
+			var offsetBottom = innerHeight + offsetTop;
+			var fixedEndPoint = offsetBottom - bannerHeight-40;
+			$(window).scroll(function(){
+				var scrollTop = $(this).scrollTop();
+				if(fixedEndPoint < scrollTop){
+					storyBox.find(".story-thumb").removeClass("start");
+					storyBox.find(".story-thumb").addClass("end");
+				}else if(offsetTop <= scrollTop && scrollTop < fixedEndPoint){
+					storyBox.find(".story-thumb").addClass("start");
+					storyBox.find(".story-thumb").removeClass("end");
+				}else{
+					storyBox.find(".story-thumb").removeClass("start");
+					storyBox.find(".story-thumb").removeClass("end");
+				}
+			});
+			// 영상 팝업
+			$this.find(".story-list li a").click(function(e){
+				var $divideKey = $(this).attr("href").slice(0,3);
+				var $videoKey = "../";
+				if($divideKey != $videoKey){
+					e.preventDefault();
+					var $videoUrl = $(this).attr("href");
+					$("body").css("overflow","hidden");
+					$("body").append("<div class='video-dim'></div><div class='video-wrap'><span class='close-video'>닫기</span></div>");
+					$(".video-wrap").prepend("<iframe width='100%' height='100%' src='https://www.youtube.com/embed/" + $videoUrl + "?autoplay=1' frameborder='0' allowfullscreen></iframe>");
+					$(".video-dim, .close-video").click(function(){
+						$("body").css("overflow","");
+						$(".video-dim").remove();
+						$(".video-wrap").remove();
+					});
+				}
+			});
+		});
+	});
+
+	/* review */
+	$(".main-review").each(function(){
+		$(this).find(".review-list > ul > li").slice(4).remove();
+		$(this).find(".review-list > ul > li").css({"display":"inline-block"});
+	});
+});

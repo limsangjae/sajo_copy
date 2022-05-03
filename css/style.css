@@ -1,0 +1,83 @@
+/* 노멀라이징 */
+*{
+    margin: 0 ;
+    padding: 0 ;
+  }
+  ul , li{
+    list-style: none ;
+  }
+  a{
+    color: inherit ;
+    text-decoration: none ;
+  }
+  /* 라이브러리 */
+  .cell{
+    float: left ;
+  }
+  .row::after{
+    clear: both;
+    content: "" ;
+    display: block ;
+  }
+/* 스타일 */
+.header-main-wrap{
+  max-width: 1600px;
+  margin: 0 auto;
+  background-color: #ddd;
+  position: relative;
+}
+.header-main-wrap>.header-main{
+  text-align: center;
+}
+.header-main-wrap>.header-main>.left-menu{
+  background-color:yellow;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.header-main-wrap>.header-main>.left-menu>ul>li{
+  margin-right: 10px;
+  margin-top: 20px;
+}
+.header-main-wrap>.header-main>.left-menu>ul>li:last-child{
+  margin-right: 0px;
+}
+.header-main-wrap>.header-main>.left-menu>ul>li>a{
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1;
+}
+.header-main-wrap>.header-main>.logo{
+  display: inline-block;
+  position: relative;
+  padding-top: 24px;
+}
+.header-main-wrap>.header-main>.right-menu{
+  width: 180px;
+  height: 59px;
+  background-color: blue;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.nav-bar{
+  background-color: skyblue;
+  position: relative;
+}
+.nav-bar>.all-menu-box{
+  background-image: url(../img/btn_allmenu_open.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.nav-bar>.menu>li{
+  margin-right: 5px;
+
+}
+.nav-bar>.business-box{
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: green;
+}
