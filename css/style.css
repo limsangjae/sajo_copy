@@ -19,6 +19,7 @@
     content: "" ;
     display: block ;
   }
+<<<<<<< HEAD
 /* 스타일 */
 .header-main-wrap{
   max-width: 1600px;
@@ -81,3 +82,14 @@
   top: 0;
   background-color: green;
 }
+=======
+
+.top-wrap>.top-nav-wrap{
+    width: 100%;
+    height: 138px;
+    background-color:gray;
+}
+.top-wrap>.top-nav-wrap>.main-logo{
+    margin: 0 auto;
+}
+>>>>>>> ea1f8f06d9a6a321af93776f848873b5dcfa709d
