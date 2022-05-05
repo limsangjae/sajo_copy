@@ -7,6 +7,9 @@
     <title>Document</title>
     <!--제이쿼리 자리-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
     <!--외부 js 자리 //폰트링크 자리-->
     <div class="header-wrap" style="min-height: 219px;">
         <div class="header">
@@ -37,21 +40,15 @@
                     </div>
                     <div class="right">
                         <ul class="row">
-                            <li class="cell">
-                                <a href="#">검색</a>
-                            </li>
-                            <li class="cell">
-                                <a href="#">장바구니</a>
-                            </li>
-                            <li class="cell">
-                                <a href="#">사람</a>
-                            </li>
+                            <li class="serch cell"></li>
+                            <li class="mypage cell"></li>
+                            <li class="basket cell"></li>
                         </ul>
                     </div>
                     <div class="nav-bar row">
                         <div class="all-menu-box cell">
-                            <a href="#"><img src="./img/btn_allmenu_open.png" alt=""></a>
-                            <strong>카테고리</strong>
+                            <a href="#"><img src="./img/btn_allmenu_open.png" alt=""><strong>카테고리</strong></a>
+                            
                         </div>
                         <div class="nav-left cell row">
                             <ul>
@@ -66,7 +63,7 @@
                                 <li class="cell"><a href="#"><strong>참치이야기 by 사조</strong></a></li>
                             </ul>   
                         </div>
-                        <a href="#" class="business-box"><strong>사업자전용</strong></a>
+                        <a href="#" class="business-box"><img src="./img/header_business_icon.png" alt=""><strong>사업자전용</strong></a>
                         
                     </div>
                 </div>
@@ -106,9 +103,28 @@
                                     <li class="cell"><a href="#">베스트</a></li>
                                     <li class="cell"><a href="#">사조핫딜</a></li>
                                     <li class="cell"><a href="#">사업자전용</a></li>
-                                    <li class="cell"><a href="#">리뷰</a></li>
-                                    <li class="cell"><a href="#">레시피</a></li>
-                                    <li class="cell"><a href="#">참치이야기 by 사조</a></li>
+                                    <li class="cell">
+                                        <a href="#">리뷰</a>
+                                        <ul>
+                                            <li><a href="#">체험단 REAL 리뷰</a></li>
+                                            <li><a href="#">고객 生生 리뷰</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="cell">
+                                        <a href="#">레시피</a>
+                                        <ul>
+                                            <li><a href="#">레시피 뽐내기</a></li>
+                                            <li><a href="#">사조 레시피</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="cell">
+                                        <a href="#">참치이야기 by 사조</a>
+                                        <ul>
+                                            <li><a href="#">Brand 소개</a></li>
+                                            <li><a href="#">About 참치</a></li>
+                                            <li><a href="#">참치 즐기는법</a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -117,7 +133,38 @@
             </div>
         </div>
     </div>
-    <div class="container"></div>
+    <div class="container">
+        <div class="contents">
+            <div class="main">
+                <div class="main-visual">
+                    <div class="slider-wrap">
+                        <div class="slider">
+                            <div class="content">
+                                <img src="./img/slider1.jpg" alt="">
+                            </div>
+                            <div class="content">
+                                <img src="./img/slider2.jpg" alt="">
+                            </div>
+                            <div class="content">
+                                <img src="./img/slider3.jpg" alt="">
+                            </div>
+                            <div class="content">
+                                <img src="./img/slider4.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="left-btn">
+                            <img src="./img/visual_prev.png" alt="">
+                        </div>
+                        <div class="right-btn">
+                            <img src="./img/visual_next.png" alt="">
+                        </div>
+                        <div class="dots"></div>
+                    </div>
+                </div>
+                <div class="main-wrap"></div>
+            </div>
+        </div>
+    </div>
 
 
 
