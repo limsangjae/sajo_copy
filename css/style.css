@@ -21,9 +21,8 @@
   }
 /* 스타일 */
 .header-main-wrap{
-  max-width: 1600px;
+  width: 1600px;
   margin: 0 auto;
-  background-color: #ddd;
   position: relative;
 }
 .header-main-wrap>.header-main{
@@ -94,8 +93,9 @@
   font-size: 20px;
 }
 .nav-bar>.all-menu-box img{
-  width: 28x;
-  height: 28px;
+  display: block;
+  width: 28px;
+  height: 27px;
   background-color: purple;
   border-radius: 50%;
   margin-right: 10px;
@@ -128,6 +128,8 @@
   display: none;
   position: absolute;
   background-color: #fff;
+  z-index: 9999;
+  width: 100%;
 }
 .nav-menu-wrap.active{
   display: block;
@@ -163,7 +165,7 @@
 }
 /* slider 시작 */
 .slider-wrap{
-  width: 1000px;
+  width: 1600px;
   margin: 0 auto;
   position: relative;
 }.slider-wrap>.slider .content{
@@ -173,14 +175,6 @@
   width: 100%;
   display:block;
   margin: 0 auto;
-}
-.slider-wrap .slick-prev{
-  left:0;
-  z-index:99;
-}
-.slider-wrap .slick-next{
-  right:0;
-  z-index:99;
 }
 .slider-wrap .left-btn{
   position:absolute;
@@ -196,3 +190,77 @@
   z-index:999;
   transform: translateY(-50%);
 }
+.dots{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -30px;
+  width: 100%;
+}
+.dots>.dot{
+  width: 10px;
+  height: 10px;
+  background-color: #002e6a;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.dots>.dot.active{
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: solid 2px #002e6a;
+}
+.dots>.state-btn>.play{
+  display: none;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+.dots>.state-btn>.play::after{
+  position: absolute;
+  display: block;
+  content: "";
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #002e6a;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.dots>.state-btn>.play.active{
+  display: block;
+}
+.dots>.state-btn>.pause{
+  display: none;
+  width: 20px;
+  height: 20px;
+}
+.dots>.state-btn>.pause::after{
+  content: "";
+  display: block;
+  width: 10px;
+  height: 20px;
+  margin: 0 auto;
+  border-left: 3px solid #002e6a;
+  border-right: 3px solid #002e6a;
+  box-sizing: border-box;
+}
+.dots>.state-btn>.pause.active{
+  display: block;
+}
+.main-box{
+  margin-top: 70px;
+}
+.main-quick-menu{
+  text-align: center;
+}
+.main-quick-menu .main-inner{
+  position: relative;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+.slider-quick{
+  margin: 0 auto;
+}
+
