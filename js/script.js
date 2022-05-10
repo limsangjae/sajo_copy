@@ -31,20 +31,26 @@ $(document).ready(function(){
         $(".dots>.dot").eq(num).siblings().removeClass("active");
     })
 
-    $(".slider").on(
-        "beforeChange",
-        function (event, slick, currentSlide, nextSlide) {
-          console.log("비포체인지");
+    $(".slider").on("beforeChange",function (event, slick, currentSlide, nextSlide) {
           $(".dots>.dot").eq(nextSlide).addClass("active");
           $(".dots>.dot").eq(nextSlide).siblings().removeClass("active");
           
           $(".content").removeClass("active")
         }
       );
-      $(".slider").on("afterChange", function (event, slick, currentSlide) {
-        console.log("에프터체인지");
+    $(".slider").on("afterChange", function (event, slick, currentSlide) {
         $(".content").eq(currentSlide+1).addClass("active");
-      });
+    });
+
+    $(".slider-quick").slick({
+
+    })
+    $(".prev-btn").click(function () {
+        $(".slider-quick").slick("slickPrev");
+    });
+    $(".next-btn").click(function () {
+        $(".slider-quick").slick("slickNext");
+    });
 
     // 끝
 })

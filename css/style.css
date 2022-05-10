@@ -19,6 +19,19 @@
     content: "" ;
     display: block ;
   }
+  .main-inner{
+    width: 1300px;
+    margin: 0 auto;
+  }
+  .main .main-title{
+    position: relative;
+    line-height: 1;
+  }
+  .main .main-title h3{
+    color: #151515;
+    font-size: 42px;
+    font-weight: 700;
+  }
 /* 스타일 */
 .header-main-wrap{
   width: 1600px;
@@ -170,6 +183,8 @@
   position: relative;
 }.slider-wrap>.slider .content{
   width: 100%;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 .slider-wrap>.slider .content>img{
   width: 100%;
@@ -189,6 +204,9 @@
   right:0;
   z-index:999;
   transform: translateY(-50%);
+}
+.slider-wrap .slider .slick-list{
+  overflow: visible;
 }
 .dots{
   display: flex;
@@ -263,4 +281,76 @@
 .slider-quick{
   margin: 0 auto;
 }
+.prev-btn{
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.next-btn{
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
+.main-box2{
+  margin-top: 100px;
+}
+.hot-deal{
+  position: relative;
+  min-height: 700px;
+}
+.hot-deal .main-inner{
+  position: relative;
+  width: 100%;
+}
+
+.hot-deal .hotdeal-txtbox{
+  width: 1300px;
+  margin: 0 auto;
+}
+
+.hot-deal .hotdeal-txtbox .main-title{
+  position: relative;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: top;
+  padding: 84px 0 35px;
+  background: url(../img/main_hotdeal_border.png) no-repeat 50% 100%;
+}
+.hot-deal .hotdeal-txtbox .main-title h3{
+  display: inline-block;
+  vertical-align: bottom;
+  padding: 0 0 0 76px;
+  color: #002e6a !important;
+  background: url(../img/main_hotdeal_title.png) no-repeat 0 50%;
+}
+.hot-deal .hotdeal-txtbox .main-title button{
+  display: inline-block;
+  vertical-align: bottom;
+  margin: 0 0 0 31px;
+  padding: 0;
+  color: #151515;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1;
+  border: 0;
+}
+.hot-deal .hotdeal-imgbox{
+  position: absolute;
+  right: 44px;
+  top: 83px;
+  width: 53%;
+}
+.main-box3{
+  margin:100px 0 0;
+}
+.best{
+  background: url(../img/main_best_wave_bg.png) no-repeat 50%;
+}
+.btn-goods-more{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
